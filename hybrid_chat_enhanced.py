@@ -1,4 +1,3 @@
-# hybrid_chat_enhanced.py -GraphDatabase IMPROVED VERSION WITH RELEVANCE DETECTION
 import json
 from typing import List, Dict, Tuple
 from openai import OpenAI
