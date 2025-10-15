@@ -1,0 +1,9 @@
+tomlkit
+neo4j==5.9.0
+openai==1.0.0
+pinecone-client==2.2.0
+pinecome
+pyvis==0.3.1
+networkx==3.1
+tqdm
+python-dotenv
