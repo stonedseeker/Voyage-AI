@@ -1,6 +1,6 @@
-# hybrid_chat_enhanced.py - IMPROVED VERSION WITH RELEVANCE DETECTION
+# hybrid_chat_enhanced.py -GraphDatabase IMPROVED VERSION WITH RELEVANCE DETECTION
 import json
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Tuple
 from openai import OpenAI
 from pinecone import Pinecone, ServerlessSpec
 from neo4j import GraphDatabase
@@ -40,10 +40,6 @@ def embed_text(text: str) -> tuple:
     return tuple(resp.data[0].embedding)
 
 def check_query_relevance(query: str) -> Tuple[bool, str]:
-    """
-    Check if query is related to Vietnam travel.
-    Returns (is_relevant, reason)
-    """
     vietnam_keywords = [
         'vietnam', 'vietnamese', 'hanoi', 'ho chi minh', 'saigon',
         'hoi an', 'da nang', 'nha trang', 'hue', 'sapa', 'mekong',
@@ -78,7 +74,6 @@ def check_query_relevance(query: str) -> Tuple[bool, str]:
     return False, "not_relevant"
 
 def pinecone_query(query_text: str, top_k=TOP_K):
-    """Query with error handling and relevance scoring."""
     try:
         vec = list(embed_text(query_text))
         res = index.query(vector=vec, top_k=top_k, include_metadata=True)
@@ -95,7 +90,6 @@ def pinecone_query(query_text: str, top_k=TOP_K):
         return [], 0.0
 
 def fetch_graph_context_enhanced(node_ids: List[str]):
-    """Richer graph context with organized data."""
     if not node_ids:
         return {"nodes": [], "relationships": [], "cities": set(), "tags": set()}
     
@@ -129,7 +123,6 @@ def fetch_graph_context_enhanced(node_ids: List[str]):
     return context
 
 def expand_query(query: str) -> List[str]:
-    """Generate related search terms."""
     expansions = [query]
     keywords = {
         "romantic": ["couples", "honeymoon"],
@@ -189,7 +182,6 @@ Provide a comprehensive answer with:
     ]
 
 def build_general_prompt(query: str):
-    """Build prompt for general non-travel questions."""
     system = """You are a helpful AI assistant. When asked questions outside of Vietnam travel, 
 provide accurate, concise answers using your general knowledge. 
 
@@ -210,7 +202,6 @@ Feel free to ask me about destinations, itineraries, hotels, or activities in Vi
     ]
 
 def call_chat(messages):
-    """Generate response."""
     try:
         resp = client.chat.completions.create(
             model=CHAT_MODEL,
@@ -223,10 +214,6 @@ def call_chat(messages):
         return f"Error: {e}"
 
 def generate_response(query: str):
-    """
-    Main response generation with relevance checking.
-    Routes to appropriate handler based on query type.
-    """
     # Check query relevance
     is_relevant, relevance_type = check_query_relevance(query)
     
@@ -282,16 +269,14 @@ def generate_response(query: str):
 
 # Interactive loop
 def interactive_chat():
-    print("=" * 60)
-    print("VIETNAM TRAVEL ASSISTANT - Enhanced")
-    print("=" * 60)
+    print("Voyage AT")
     print("\nAsk about Vietnam destinations, itineraries, and activities")
     print("Type 'exit' to quit\n")
     
     while True:
         query = input("\nYour question: ").strip()
         if not query or query.lower() in ("exit", "quit"):
-            print("\nThank you for using Vietnam Travel Assistant!")
+            print("\nThank you for using Voyage AI!")
             break
 
         print("\nProcessing query...")
