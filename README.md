@@ -1,13 +1,12 @@
-# Voyage AI 🌏
+# Voyage AI 
+
+> Intelligent Vietnam travel assistant powered by hybrid RAG architecture
 
 ![Pinecone](https://img.shields.io/badge/Pinecone-Vector_DB-purple)
 ![Neo4j](https://img.shields.io/badge/Neo4j-Graph_DB-blue)
 ![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-green)
 ![Python](https://img.shields.io/badge/Python-3.10+-yellow)
 
-> Intelligent Vietnam travel assistant powered by hybrid RAG architecture
-
-An AI-powered travel planning system that combines semantic search with graph relationships to generate personalized Vietnam itineraries.
 
 ## Quick Start
 ```bash
@@ -46,13 +45,6 @@ Voyage AI: [Generates detailed day-by-day plan with hotels,
 - 10 major cities
 - 700+ relationships (hotels, attractions, activities)
 - 1536-dim vector embeddings
-
-## Example Queries
-
-- "Romantic places in Vietnam"
-- "Adventure activities in Sapa"
-- "Best beaches for families"
-- "4-day cultural tour starting from Hanoi"
 
 ## Contributing
 
